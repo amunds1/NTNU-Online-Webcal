@@ -3,31 +3,43 @@
 const request = require('request');
 const moment = require('moment');
 
-function generateEventList() {
-  const date = moment().format('YYYY-MM-DD');
-  const url = `https://online.ntnu.no/api/v1/events/?event_start__gte=${date}`;
-
+function getRawEventList(url) {
   return new Promise((resolve, reject) => {
     request(url, { json: true }, (err, res, body) => {
-
-      if (err) { 
+      if (err) {
         reject(err);
+      } else {
+        resolve(body);
       }
-  
-      const eventList = body.results.map(result => ({
-          title: result.title,
-          start: result.event_start,
-          end: result.event_end,
-          summary: result.ingress_short,
-          description: result.ingress_short,
-          location: result.location,
-          url: result.absolute_url,
-          id: result.id
-      }));
-  
-      resolve(eventList);
     });
   });
+}
+
+async function generateEventList() {
+  const date = moment().format('YYYY-MM-DD');
+  const baseUrl = `https://online.ntnu.no/api/v1/events/?event_start__gte=${date}`;
+  let url = baseUrl;
+  const eventList = [];
+
+  while (url != null) {
+    console.log(url);
+
+    const body = await getRawEventList(url);
+    url = body.next;
+
+    eventList.push(...body.results.map(result => ({
+      title: result.title,
+      start: result.event_start,
+      end: result.event_end,
+      summary: result.ingress_short,
+      description: result.ingress_short,
+      location: result.location,
+      url: result.absolute_url,
+      id: result.id
+    })));
+  }
+
+  return eventList;
 };
 
 module.exports = {
