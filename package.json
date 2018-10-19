@@ -1,0 +1,20 @@
+{
+  "name": "EventFeed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "ical-generator": "^1.2.2",
+    "moment": "^2.22.2",
+    "request": "^2.88.0",
+    "requests": "^0.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
