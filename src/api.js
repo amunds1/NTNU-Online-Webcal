@@ -22,7 +22,6 @@ async function generateEventList() {
   const eventList = [];
 
   while (url != null) {
-    console.log(url);
 
     const body = await getRawEventList(url);
     url = body.next;
