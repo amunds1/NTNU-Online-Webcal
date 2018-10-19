@@ -1,5 +1,3 @@
-// TODO Get evens from multiple pages (&page=1, &page=2, &page=3 etc)
-
 const request = require('request');
 const moment = require('moment');
 
