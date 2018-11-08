@@ -31,7 +31,7 @@ async function generateEventList() {
       summary: result.ingress_short,
       description: result.ingress_short,
       location: result.location,
-      url: result.absolute_url,
+      url: 'https://online.ntnu.no' + result.absolute_url,
       id: result.id
     })));
   }
