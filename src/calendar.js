@@ -8,6 +8,7 @@ function generateCalendar(eventList) {
 
     for (const event of eventList) {
         cal.createEvent({
+            registratonStart: event.registration_start,
             start: event.start,
             end: event.end, 
             summary: event.summary,
