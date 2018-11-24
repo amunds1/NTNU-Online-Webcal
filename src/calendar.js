@@ -7,14 +7,11 @@ function generateCalendar(eventList) {
     });
 
     for (const event of eventList) {
+        console.log(event);
+        
         cal.createEvent({
-            start: event.start,
-            end: event.end, 
-            summary: event.summary,
-            description: event.summary,
-            location: event.location,
-            url: event.url,
-            uid: event.id
+            ...event,
+            description: event.summary
         });
     }
 
