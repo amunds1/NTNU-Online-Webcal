@@ -26,9 +26,7 @@ async function generateEventList() {
 
     eventList.push(...body.results.map(result => ({
       title: result.title,
-      //registrationStart: result.attendance_event && result.attendance_event.registration_start,
-      //start: result.event_start,
-      start: result.attendance_event && result.attendance_event.registration_start,
+      start: result.event_start,
       end: result.event_end,
       summary: result.ingress_short,
       description: result.ingress_short,
