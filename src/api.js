@@ -29,7 +29,7 @@ async function generateEventList() {
       start: result.event_start,
       end: result.event_end,
       summary: result.title,
-      description: 'https://online.ntnu.no' + result.absolute_url + '\n' + result.ingress_short,
+      description: result.ingress_short,
       location: result.location,
       url: 'https://online.ntnu.no' + result.absolute_url,
       uid: result.id
