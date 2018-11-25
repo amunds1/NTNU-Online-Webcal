@@ -15,7 +15,7 @@ function getRawEventList(url) {
 
 async function generateEventList() {
   const date = moment().format('YYYY-MM-DD');
-  const baseUrl = `https://online.ntnu.no/api/v1/events/?event_start__gte=${date}`;
+  const baseUrl = `https://online.ntnu.no/api/v1/events/?attendance_event__isnull=False&event_start__gte=${date}`;
   let url = baseUrl;
   const eventList = [];
 
@@ -26,9 +26,9 @@ async function generateEventList() {
 
     eventList.push(...body.results.map(result => ({
       title: result.title,
-      start: result.event_start,
-      end: result.event_end,
-      summary: result.ingress_short,
+      start: result.registration_start,
+      end: result.registration_start,
+      summary: result.title,
       description: result.ingress_short,
       location: result.location,
       url: 'https://online.ntnu.no' + result.absolute_url,
